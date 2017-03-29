@@ -23,10 +23,10 @@ int imgdiff(char *img1, char *img2)
 //	CV_Assert(matSrc2.channels() == 3);
 
 
-	//if ((mat1.cols - mat2.cols)>20 || (mat1.rows - mat2.rows)>20)
-	//{
-	//	return 100;
-	//}
+	if (abs(mat1.cols - mat2.cols)>40 || abs(mat1.rows - mat2.rows)>40)
+	{
+		return 100;
+	}
 
 	cv::resize(mat1, matSrc1, cv::Size(357, 419), 0, 0, cv::INTER_NEAREST);
 	//cv::flip(matSrc1, matSrc1, 1);

@@ -21,7 +21,7 @@
 
 using namespace std;
 
-int _tmaindf(int argc, _TCHAR* argv[])
+int _tmafdfin(int argc, _TCHAR* argv[])
 {
 	/*if (argc != 6)
 	{
@@ -33,7 +33,7 @@ int _tmaindf(int argc, _TCHAR* argv[])
 	string detectorType = "SIFT";
 	string extractorType = "SIFT";
 	string matchType = "BruteForce";
-	string queryImagePath = "swan.jpg";
+	string queryImagePath = "lena.png";
 	string trainImagePath = "swan.jpg";
 
 

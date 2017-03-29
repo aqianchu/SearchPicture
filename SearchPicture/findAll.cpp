@@ -25,16 +25,26 @@ using namespace std;
 int _tmain(int argc, _TCHAR* argv[])
 {
 	struct _finddata_t file_info;
-	char *sourc = "D:\\Chrome\\m_browser_chromium\\chrome\\android\\java\\res\\drawable-hdpi\\app_icon.png";
-	char *root = "D:\\Chrome\\m_browser_chromium\\chrome\\android\\java\\res\\drawable-xhdpi\\";
-	char*file_path = "D:\\Chrome\\m_browser_chromium\\chrome\\android\\java\\res\\drawable-xhdpi\\*.png";
+	char *sourc = new char[256];
+	memset(sourc, '\0', sizeof(sourc));
+	strcpy(sourc, "D:\\Chrome\\m_browser_chromium\\chrome\\android\\java\\res\\drawable-xhdpi\\no_history_record.png");
+	char *root = new char[256];
+	strcpy(root, "D:\\Chrome\\m_browser_chromium\\chrome\\android\\java\\res\\drawable-xhdpi\\");
+	char *file_path = new char[256];
+	memset(file_path, '\0', sizeof(file_path));
+	strcat(file_path, root);
+	strcat(file_path, "*.png");
+	cout << "原图片路径" << endl;
+	cin >> sourc;
+	cout << "待搜索文件夹路径" << endl;
+	cin >> root;
 	intptr_t file_handle;
 	int count = 0;
 	//file_handle = _findfirst((LPCTSTR)(file_path + "*.jpg"), &file_info);
 	file_handle = _findfirst(file_path, &file_info);
 	if (file_handle == -1)
 	{
-		printf("没有发现.jpg文件");
+		printf("没有发现.png文件");
 		return 0;
 	}
 	//printf("%d %s\n", ++count, file_info.name);
@@ -47,9 +57,10 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 		char *result = new char[strlen(root) + len + 1];
 		sprintf(result, "%s%s", root, name);
+
 		if (imgdiff(sourc,result) <= 8)
 		{
-			printf("%d %s\n", ++count, file_info.name);
+			printf("%d %s%s\n", ++count,root, file_info.name);
 		}
 	}
 	_findclose(file_handle);
